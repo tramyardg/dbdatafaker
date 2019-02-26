@@ -1,16 +1,20 @@
 package com.dbdatafaker;
 
 import com.dbdatafaker.employee.ConcreteEmployeeBuilder;
-import com.dbdatafaker.employee.IEmployeeBuilder;
 
 public class App {
 
     public static void main(String[] args) {
 
-        IEmployeeBuilder b = new ConcreteEmployeeBuilder();
-        b.buildAddress();
-        b.buildFullName();
-        System.out.println(b.build().toString());
+        int N = 10;
+        for (int i = 0; i < N; i++) {
+            System.out.println(new ConcreteEmployeeBuilder()
+                    .buildFirstName()
+                    .buildLastName()
+                    .buildAddress()
+                    .build().toString());
+        }
+
 
     }
 }

@@ -1,12 +1,12 @@
 package com.dbdatafaker.employee;
 
 public class ConcreteEmployeeBuilder implements IEmployeeBuilder {
-    private FakeEmployeeDataGenerator generate;
+    private FakeEmployeeGenerator generate;
     private Employee employee;
 
     public ConcreteEmployeeBuilder() {
         this.employee = new Employee();
-        this.generate = new FakeEmployeeDataGenerator();
+        this.generate = new FakeEmployeeGenerator();
     }
 
     public IEmployeeBuilder buildFirstName() {
@@ -16,11 +16,6 @@ public class ConcreteEmployeeBuilder implements IEmployeeBuilder {
 
     public IEmployeeBuilder buildLastName() {
         employee.setLastName(this.generate.generateLastName());
-        return this;
-    }
-
-    public IEmployeeBuilder buildFullName() {
-        employee.setFullName(this.generate.generateFullName());
         return this;
     }
 

@@ -1,14 +1,15 @@
 package com.dbdatafaker.employee;
 
-import java.util.Locale;
-
 import com.github.javafaker.Faker;
 
-class FakeEmployeeDataGenerator {
+import java.util.Locale;
 
+class FakeEmployeeGenerator {
+
+    // TODO set local dynamically in runtime
     private Faker faker = new Faker(new Locale("en-CA"));
 
-    FakeEmployeeDataGenerator() {
+    FakeEmployeeGenerator() {
 
     }
 
@@ -18,10 +19,6 @@ class FakeEmployeeDataGenerator {
 
     String generateLastName() {
         return faker.name().lastName();
-    }
-
-    String generateFullName() {
-        return faker.name().fullName();
     }
 
     String generateAddress() {

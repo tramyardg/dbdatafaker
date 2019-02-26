@@ -6,8 +6,6 @@ public interface IEmployeeBuilder {
 
     IEmployeeBuilder buildLastName();
 
-    IEmployeeBuilder buildFullName();
-
     IEmployeeBuilder buildAddress();
 
     Employee build();
