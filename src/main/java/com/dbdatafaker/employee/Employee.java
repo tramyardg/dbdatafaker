@@ -1,5 +1,8 @@
 package com.dbdatafaker.employee;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee {
 
     private String firstName;
@@ -18,29 +21,30 @@ public class Employee {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        String first = "";
-        String last = "";
-        String ad = "";
-        if (firstName != null) {
-            first = "first_name,";
+    public String buildQuery(int j) {
+        String[] tableColumns = new String[]{
+                "first_name", "last_name", "address"
+        };
+        String[] attributes = new String[]{
+                firstName, lastName, address
+        };
+        String tableName = "employees";
+        StringBuilder sql = new StringBuilder("INSERT INTO " + tableName + "(id,");
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i < attributes.length; i++) {
+            if (attributes[i] != null) {
+                sql.append(tableColumns[i]).append(",");
+                list.add(attributes[i]);
+            }
         }
-        if (lastName != null) {
-            last = "last_name,";
+        j += 1; // auto increment id
+        sql.append(") VALUES(").append(j).append(",");
+        for (String s : list) {
+            sql.append("\'").append(s).append("\'").append(",");
         }
-        if (address != null) {
-            ad = "address";
-        }
-        String q = "insert into employee (" + first + last + ad + ") values (";
-        String out = q + "\"" + firstName + "\"" + "," +
-                "\"" + lastName + "\"" + "," +
-                "\"" + address + "\"" + ");";
 
-        String s2 = out.replaceAll(",\\)", ")");
-        String s3 = s2.replaceAll("\"null\",", "");
-        return s3.replaceAll(",\"null\"\\);", ")");
-
-
+        sql.append(");");
+        sql = new StringBuilder(sql.toString().replaceAll(",\\)", ")"));
+        return sql.toString();
     }
 }
